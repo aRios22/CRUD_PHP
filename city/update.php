@@ -20,6 +20,7 @@
     }
     //CAPTURA LOS VALORES QUE TIENE EL ARREGLO POST
     if(isset($_POST['bt_update'])){
+        
 
         $ID = $_GET['ID'];
         $name = $_POST['Name'];
@@ -27,14 +28,12 @@
         $district = $_POST['District'];
         $population = $_POST['Population'];
 
-        $query = "UPDATE `world`.`city` SET 
-                    `Name` = ?, 
-                    `CountryCode` = ?,
-                    `District` = ?,
-                    `Population` = ?
-                    WHERE `ID` = ?";
-        mysqli_query($conn, $query);
+        $query = "UPDATE `world`.`city` 
+                SET `Name` = '$name', `CountryCode` = '$countryCode', `District` = '$district', `Population` =  '$population'
+                WHERE `ID` = '$ID'";
 
+        mysqli_query($conn, $query);
+        
         header("Location: ../index.php");
     }
 ?>
