@@ -54,23 +54,11 @@
         $headOfState = $_POST['HeadOfState'];
         $capital = $_POST['Capital'];
         $code2 = $_POST['Code2'];
+        
 
-        $query = "UPDATE `world`.`country` SET 
-                    `Name` = ?, 
-                    `Continent` = ?,
-                    `Region` = ?,
-                    `SurfaceArea` = ?,
-                    `IndepYear` = ?,
-                    `Population` = ?,
-                    `LifeExpectancy` = ?,
-                    `GNP` = ?,
-                    `GNPOld` = ?,
-                    `LocalName` = ?,
-                    `GovernmentForm` = ?,
-                    `HeadOfState` = ?,
-                    `Capital` = ?,
-                    `Code2` = ?
-                    WHERE `Code` = ?";
+        $query = "UPDATE `world`.`country` 
+            SET `Name` = '$name', `Continent` = '$continent',`Region` = '$region',`SurfaceArea` = '$surfaceArea',`IndepYear` = '$independenceYear',`Population` = '$population',`LifeExpectancy` = '$lifeExpectancy',`GNP` = '$gnp',`GNPOld` = '$gnpOld',`LocalName` = '$localName',`GovernmentForm` = '$governmentForm',`HeadOfState` = '$headOfState',`Code2` = '$code2'
+            WHERE `Code` = '$code'";
         mysqli_query($conn, $query);
 
         header("Location: ../index.php");
@@ -79,12 +67,9 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></head>
 
-<form action="update.php?code=<?php echo $_GET['Code'] ?>" method="POST">
+<form action="update.php?Code=<?php echo $_GET['Code']?>" method="POST">
     <div class="form-row">
-        <div class="form-group col-md-2">
-            <label for="lcode">Code:</label>
-            <input type="text" class="form-control" id="Code" name="Code" maxlength="3"  value="<?php echo $code ?>">
-        </div>
+       
         <div class="form-group col-md-3">
             <label for="lname">Name:</label>
             <input type="text" class="form-control" id="Name" name="Name" value="<?php echo $name ?>">
@@ -116,7 +101,13 @@
         </div>
         <div class="form-group col-md-2">
             <label for="lIndepYear">Independece Year:</label>
-            <input type="number" class="form-control" id="IndepYear" name="IndepYear" value="<?php echo $independenceYear ?>">
+            <input type="number" class="form-control" id="IndepYear" name="IndepYear" value="<?php 
+            if ($independenceYear==null) {
+                echo 0;
+            } else {
+                echo $independenceYear;
+            };
+             ?>">
         </div>
     </div>
     <div class="form-row">
@@ -126,17 +117,29 @@
         </div>
         <div class="form-group col-md-2">
             <label for="lLifeExpectancy">Life Expectancy:</label>
-            <input type="number" class="form-control" id="LifeExpectancy" name="LifeExpectancy" value="<?php echo $lifeExpectancy ?>">
+            <input type="number" class="form-control" id="LifeExpectancy" name="LifeExpectancy" value="<?php if ($lifeExpectancy==null) {
+                echo 0;
+            } else {
+                echo $lifeExpectancy;
+            }; ?>">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-2">
             <label for="lGNP">GNP:</label>
-            <input type="number" class="form-control" id="GNP" name="GNP" step=".01" value="<?php echo $gnp ?>">
+            <input type="number" class="form-control" id="GNP" name="GNP" step=".01" value="<?php if ($gnp==null) {
+                echo 0;
+            } else {
+                echo $gnp;
+            };  ?>">
         </div>
         <div class="form-group col-md-2">
             <label for="lGNPOld">GNPOld:</label>
-            <input type="number" class="form-control" id="GNPOld" name="GNPOld" step=".01" value="<?php echo $gnpOld ?>">
+            <input type="number" class="form-control" id="GNPOld" name="GNPOld" step=".01" value="<?php if ($gnpOld==null) {
+                echo 0;
+            } else {
+                echo $gnpOld;
+            }; ?>">
         </div>
     </div>
     <div class="form-row">
@@ -156,7 +159,11 @@
         </div>
         <div class="form-group col-md-2">
             <label for="lCapital">Capital:</label>
-            <input type="number" class="form-control" id="Capital" name="Capital" value="<?php echo $capital ?>">    
+            <input type="number" class="form-control" id="Capital" name="Capital" value="<?php if ($capital==null) {
+                echo 0;
+            } else {
+                echo $capital;
+            }; ?>">    
         </div>
         <div class="form-group col-md-2">
             <label for="lCode2">Code 2:</label>
