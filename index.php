@@ -25,6 +25,7 @@ if (!isset($_SESSION['loggedin'])) {
         <button class="tablinks" onclick="openTab(event, 'tab2')">City</button>
         <button class="tablinks" onclick="openTab(event, 'tab3')">Country Lenguages</button>
         <button class="tablinks" onclick="openTab(event, 'tab4')">Querys</button>
+        <a href="login/logout.php">Logout</a>
     </div>
 
     <div id="tab1" class="tabcontent">
@@ -38,6 +39,7 @@ if (!isset($_SESSION['loggedin'])) {
 
     <div id="tab4" class="tabcontent">
     </div>
+
 </body>
 </html>
 
