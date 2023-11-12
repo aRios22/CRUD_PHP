@@ -66,7 +66,7 @@ include('../services/connection.php');
             <td><?php echo $fila['IsOfficial'] ?></td>
             <td><?php echo $fila['Percentage'] ?></td>
             <td>
-                <a href="countrylenguages/update.php?CountryCode=<?php echo $fila['CountryCode'] ?>">Update</a>
+                
                 <a href="countrylenguages/delete.php?CountryCode=<?php echo $fila['CountryCode'] ?>">Delete</a>
             </td>
         </tr>

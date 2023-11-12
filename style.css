@@ -1,3 +1,8 @@
 .tabcontent {
     display: none;
 }
+
+.div-form{
+    width: 70%;
+    margin: auto;
+}
